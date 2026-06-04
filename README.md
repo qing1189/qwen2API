@@ -6,10 +6,9 @@ Telegram 群聊: [https://t.me/qwen2api](https://t.me/qwen2api)
 
 [![Stars](https://img.shields.io/github/stars/YuJunZhiXue/qwen2API?style=flat-square)](https://github.com/YuJunZhiXue/qwen2API/stargazers)
 [![Forks](https://img.shields.io/github/forks/YuJunZhiXue/qwen2API?style=flat-square)](https://github.com/YuJunZhiXue/qwen2API/network/members)
-[![Release](https://img.shields.io/github/v/release/YuJunZhiXue/qwen2API?style=flat-square)](https://github.com/YuJunZhiXue/qwen2API/releases)
 [![Docker Pulls](https://img.shields.io/docker/pulls/yujunzhixue/qwen2api?style=flat-square)](https://hub.docker.com/r/yujunzhixue/qwen2api)
 
-语言 / Language: [中文](./README.md)
+语言 / Language: [中文](./README.md) | [English](./README_EN.md)
 
 qwen2API 将通义千问 Web 端能力转换为 OpenAI、Anthropic Claude 与 Gemini 兼容接口，并提供 Web 管理台、账号池、图片生成、文件上传与多架构 Docker 部署能力。
 
