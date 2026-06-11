@@ -1,9 +1,13 @@
 package services
 
 import (
+	cryptorand "crypto/rand"
 	"encoding/json"
+	"fmt"
+	"math/rand"
 	"net/http"
 	"strings"
+	"time"
 
 	"qwen2api-go/upstream"
 )
@@ -26,6 +30,14 @@ type TokenVerifyResult struct {
 	Message    string
 }
 
+func generateRequestID() string {
+	b := make([]byte, 16)
+	if _, err := cryptorand.Read(b); err != nil {
+		return fmt.Sprintf("%d-%d", time.Now().UnixNano(), rand.Int63())
+	}
+	return fmt.Sprintf("%x-%x-%x-%x-%x", b[0:4], b[4:6], b[6:8], b[8:10], b[10:16])
+}
+
 func QwenHeaders(token string) http.Header {
 	headers := http.Header{}
 	headers.Set("Accept", "application/json, text/event-stream")
@@ -34,6 +46,7 @@ func QwenHeaders(token string) http.Header {
 	if token != "" {
 		headers.Set("Authorization", "Bearer "+token)
 	}
+	headers.Set("x-request-id", generateRequestID())
 	return headers
 }
 

@@ -7690,6 +7690,14 @@ func NewQwenClient(pool *AccountPool, settings Settings, logger *slog.Logger) *Q
 	}
 }
 
+func generateRequestID() string {
+	b := make([]byte, 16)
+	if _, err := cryptorand.Read(b); err != nil {
+		return fmt.Sprintf("%d-%d", time.Now().UnixNano(), mathrand.Int63())
+	}
+	return fmt.Sprintf("%x-%x-%x-%x-%x", b[0:4], b[4:6], b[6:8], b[8:10], b[10:16])
+}
+
 func qwenHeaders(token string) http.Header {
 	h := http.Header{}
 	h.Set("Authorization", "Bearer "+token)
@@ -7705,6 +7713,7 @@ func qwenHeaders(token string) http.Header {
 	h.Set("sec-fetch-dest", "empty")
 	h.Set("sec-fetch-mode", "cors")
 	h.Set("sec-fetch-site", "same-origin")
+	h.Set("x-request-id", generateRequestID())
 	return h
 }
 
