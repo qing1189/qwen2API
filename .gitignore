@@ -10,6 +10,10 @@ __pycache__/
 *$py.class
 *.so
 
+# Go
+backend/qwen2api-go
+*.exe
+
 # Data and Logs
 data/*.json
 logs/
